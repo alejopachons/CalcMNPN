@@ -227,26 +227,15 @@ opciones_conexion_mb = {
     "Estudios postsecundarios en Manitoba (2 años o más)": 100,
     "Estudios postsecundarios en Manitoba (1 año)": 50,
     "Amigo cercano o familiar lejano en Manitoba": 50,
-    "Ninguna conexión": 0 # Aunque se puede inferir si ninguna otra se marca
 }
 
 score_conexion_mb = 0
-# Crear checkboxes y calcular el puntaje de conexión
-# Se toma el puntaje más alto si se marcan múltiples (simulando "conexión más fuerte")
 for label, points in opciones_conexion_mb.items():
-    if label == "Ninguna conexión":
-        continue # Manejaremos "Ninguna conexión" implícitamente o como una opción de deselección
     
     if st.checkbox(f"{label} ({points} pts)", key=f"conexion_{label}"):
         # Si el usuario selecciona múltiples, tomamos el puntaje más alto
         if points > score_conexion_mb:
             score_conexion_mb = points
-
-# Si ninguna conexión es marcada explícitamente, y el score_conexion_mb sigue siendo 0,
-# significa que "Ninguna conexión" aplica.
-if score_conexion_mb == 0 and not any(st.session_state.get(f"conexion_{label}", False) for label in opciones_conexion_mb if label != "Ninguna conexión"):
-    st.markdown("_(Ninguna conexión con Manitoba seleccionada)_")
-
 
 st.badge(f"{score_conexion_mb} puntos", color="orange")
 
@@ -259,16 +248,12 @@ st.badge("Máximo 500 puntos", color="gray")
 opciones_manitoba_demand = {
     "Empleo actual en Manitoba por 6 meses o más + oferta a largo plazo": 500,
     "Invitación para aplicar bajo una Iniciativa Estratégica": 500,
-    "Ninguna": 0 # Aunque se puede inferir
 }
 
 score_demand = 0
 # Crear checkboxes y calcular el puntaje de demanda
 # Se toma el puntaje más alto si se marcan múltiples
 for label, points in opciones_manitoba_demand.items():
-    if label == "Ninguna":
-        continue # Manejaremos "Ninguna" implícitamente
-    
     if st.checkbox(f"{label} ({points} pts)", key=f"demanda_{label}"):
         if points > score_demand:
             score_demand = points
