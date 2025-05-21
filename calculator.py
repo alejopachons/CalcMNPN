@@ -103,7 +103,7 @@ if segundo_idioma == "Sí":
 # Sumar todos los puntos
 puntos_totales_idioma = pts_speaking + pts_reading + pts_listening + pts_writing + pts_segundo_idioma
 
-st.badge(f"{puntos_totales_idioma} puntos", icon=":material/check:", color="green")
+st.badge(f"Puntaje total de Idioma: {puntos_totales_idioma} puntos", icon=":material/check:", color="green")
 
 st.divider()
 
@@ -138,7 +138,7 @@ if edad != None:
 else:
     pts_edad = 0
 
-st.badge(f"{pts_edad} puntos", icon=":material/check:", color="green")
+st.badge(f"Puntaje total de Edad: {pts_edad} puntos", icon=":material/check:", color="green")
 
 st.divider()
 
@@ -174,7 +174,7 @@ if experiencia != None:
 else:
     score_experiencia = 0
     
-st.badge(f"{score_experiencia} puntos", icon=":material/check:", color="green")
+st.badge(f"Puntaje total de Experiencia laboral: {score_experiencia} puntos", icon=":material/check:", color="green")
 
 
 st.divider()
@@ -208,7 +208,7 @@ if educacion != None:
 else:
     score_educacion = 0
 
-st.badge(f"{score_educacion} puntos", icon=":material/check:", color="green")
+st.badge(f"Puntaje total de Educación: {score_educacion} puntos", icon=":material/check:", color="green")
 
 st.divider()
 
@@ -323,7 +323,7 @@ riesgo_solicitud_otra_provincia = st.checkbox("Has presentado una solicitud de i
 if riesgo_solicitud_otra_provincia:
     puntos_riesgo_total -= 0
 
-st.badge(f"{puntos_riesgo_total} puntos", icon=":material/check:", color="red")
+st.badge(f"Puntaje total de Evaluación de riesgo: {puntos_riesgo_total} puntos", icon=":material/check:", color="red")
 
 st.divider()
 
