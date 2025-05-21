@@ -81,18 +81,9 @@ if segundo_idioma == "Sí":
 # Sumar todos los puntos
 puntos_totales_idioma = pts_speaking + pts_reading + pts_listening + pts_writing + pts_segundo_idioma
 
-# Mostrar resultados
-st.write(f"Puntos en Speaking: {pts_speaking}")
-st.write(f"Puntos en Reading: {pts_reading}")
-st.write(f"Puntos en Listening: {pts_listening}")
-st.write(f"Puntos en Writing: {pts_writing}")
-st.write(f"Puntos por segundo idioma: {pts_segundo_idioma}")
-st.write(f"**Puntos totales de idioma (incluyendo segundo idioma): {puntos_totales_idioma} / 150**")
-
-
-
 # 2. Edad
-edad = st.selectbox("¿Qué edad tienes? (75 pts máximo)", [
+st.header("2. Edad (75 pts máximo)")
+edad = st.selectbox("¿Qué edad tienes?", [
     "18 (20 pts)",
     "19 (30 pts)",
     "20 (40 pts)",
@@ -137,8 +128,8 @@ puntos_experiencia = {
 score_experiencia = puntos_experiencia[experiencia]
 
 # 4. Educación
-st.header("4. Nivel de educación (125 pts máximo)")
-educacion = st.selectbox("Selecciona tu nivel educativo", [
+st.header("4. Nivel de educación")
+educacion = st.selectbox("Selecciona tu nivel educativo (125 pts máximo)", [
     "Maestría o doctorado (125 pts)",
     "Dos programas postsecundarios de al menos dos años cada uno (115 pts)",
     "Un programa postsecundario de tres años o más (110 pts)",
@@ -159,7 +150,7 @@ puntos_educacion = {
 }
 score_educacion = puntos_educacion[educacion]
 
-st.header("5. Adaptabilidad (máximo 500 pts)")
+st.header("5. Adaptabilidad")
 
 # --- 5.1 Conexión con Manitoba (máximo 200 pts) ---
 st.subheader("5.1 Conexión con Manitoba (máx. 200 pts)")
