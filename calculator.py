@@ -10,28 +10,86 @@ st.markdown(
     unsafe_allow_html=True
 )
 
-# 1. Lenguaje
 st.header("1. Idioma principal (125 pts máximo)")
-clb = st.selectbox("¿Cuál es tu CLB?", [
-    "CLB 8 o más (25 pts por banda)",
-    "CLB 7 (22 pts por banda)",
-    "CLB 6 (20 pts por banda)",
-    "CLB 5 (17 pts por banda)",
-    "CLB 4 (12 pts por banda)",
-    "Menos de CLB 4 (0 pts)",
-    "Segundo idioma - CLB 5 o superior [overall] (25 pts)"
+
+# Selección de nivel CLB para cada habilidad del idioma principal
+clb_speaking = st.selectbox("¿Cuál es tu nivel en Speaking?", [
+    "CLB 8 o más (25 pts)",
+    "CLB 7 (22 pts)",
+    "CLB 6 (20 pts)",
+    "CLB 5 (17 pts)",
+    "CLB 4 (12 pts)",
+    "Menos de CLB 4 (0 pts)"
 ])
-puntos_idioma = {
+
+clb_reading = st.selectbox("¿Cuál es tu nivel en Reading?", [
+    "CLB 8 o más (25 pts)",
+    "CLB 7 (22 pts)",
+    "CLB 6 (20 pts)",
+    "CLB 5 (17 pts)",
+    "CLB 4 (12 pts)",
+    "Menos de CLB 4 (0 pts)"
+])
+
+clb_listening = st.selectbox("¿Cuál es tu nivel en Listening?", [
+    "CLB 8 o más (25 pts)",
+    "CLB 7 (22 pts)",
+    "CLB 6 (20 pts)",
+    "CLB 5 (17 pts)",
+    "CLB 4 (12 pts)",
+    "Menos de CLB 4 (0 pts)"
+])
+
+clb_writing = st.selectbox("¿Cuál es tu nivel en Writing?", [
+    "CLB 8 o más (25 pts)",
+    "CLB 7 (22 pts)",
+    "CLB 6 (20 pts)",
+    "CLB 5 (17 pts)",
+    "CLB 4 (12 pts)",
+    "Menos de CLB 4 (0 pts)"
+])
+
+puntos_por_clb = {
     "CLB 8 o más (25 pts)": 25,
-    "CLB 7 (22 pts por banda)": 22,
-    "CLB 6 (20 pts por banda)": 20,
-    "CLB 5 (17 pts por banda)": 17,
-    "CLB 4 (12 pts por banda)": 12,
-    "Menos de CLB 4 (0 pts)": 0,
-    "Segundo idioma - CLB 5 o superior [overall] (25 pts)": 25
-    
+    "CLB 7 (22 pts)": 22,
+    "CLB 6 (20 pts)": 20,
+    "CLB 5 (17 pts)": 17,
+    "CLB 4 (12 pts)": 12,
+    "Menos de CLB 4 (0 pts)": 0
 }
-score_idioma = puntos_idioma[clb]
+
+# Calcular puntos de idioma principal
+pts_speaking = puntos_por_clb[clb_speaking]
+pts_reading = puntos_por_clb[clb_reading]
+pts_listening = puntos_por_clb[clb_listening]
+pts_writing = puntos_por_clb[clb_writing]
+
+# Preguntar por segundo idioma justo después
+segundo_idioma = st.radio("¿Tienes un segundo idioma?", ("No", "Sí"))
+
+pts_segundo_idioma = 0
+if segundo_idioma == "Sí":
+    clb_segundo = st.selectbox("¿Cuál es tu nivel CLB global del segundo idioma?", [
+        "CLB 5 o más (25 pts)",
+        "Menos de CLB 5 (0 pts)"
+    ])
+    if clb_segundo == "CLB 5 o más (25 pts)":
+        pts_segundo_idioma = 25
+    else:
+        pts_segundo_idioma = 0
+
+# Sumar todos los puntos
+puntos_totales_idioma = pts_speaking + pts_reading + pts_listening + pts_writing + pts_segundo_idioma
+
+# Mostrar resultados
+st.write(f"Puntos en Speaking: {pts_speaking}")
+st.write(f"Puntos en Reading: {pts_reading}")
+st.write(f"Puntos en Listening: {pts_listening}")
+st.write(f"Puntos en Writing: {pts_writing}")
+st.write(f"Puntos por segundo idioma: {pts_segundo_idioma}")
+st.write(f"**Puntos totales de idioma (incluyendo segundo idioma): {puntos_totales_idioma} / 150**")
+
+
 
 # 2. Edad
 edad = st.selectbox("¿Qué edad tienes? (75 pts máximo)", [
@@ -174,5 +232,5 @@ puntos_riesgo = sum([riesgo_puntos[riesgo] for riesgo in riesgos])
 
 # Puntaje total
 st.subheader("🎯 Tu puntaje total es:")
-puntaje_total = score_educacion + score_experiencia + score_idioma + score_edad + score_adaptabilidad + puntos_riesgo
+puntaje_total = score_educacion + score_experiencia + puntos_totales_idioma + score_edad + score_adaptabilidad + puntos_riesgo
 st.metric(label="Puntaje MPNP estimado", value=puntaje_total)
