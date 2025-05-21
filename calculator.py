@@ -18,42 +18,42 @@ col13, col14 = st.columns (2)
 with col11: 
     # Selección de nivel CLB para cada habilidad del idioma principal
     clb_speaking = st.selectbox("¿Cuál es tu nivel en Speaking?", [
-        "CLB 8 o más (25 pts)",
-        "CLB 7 (22 pts)",
-        "CLB 6 (20 pts)",
-        "CLB 5 (17 pts)",
-        "CLB 4 (12 pts)",
         "Menos de CLB 4 (0 pts)"
+        "CLB 6 (20 pts)",
+        "CLB 4 (12 pts)",
+        "CLB 5 (17 pts)",
+        "CLB 7 (22 pts)",
+        "CLB 8 o más (25 pts)",
     ], index=None, placeholder="Seleccione una opción...")
 
 with col12:
     clb_reading = st.selectbox("¿Cuál es tu nivel en Reading?", [
-        "CLB 8 o más (25 pts)",
-        "CLB 7 (22 pts)",
-        "CLB 6 (20 pts)",
-        "CLB 5 (17 pts)",
-        "CLB 4 (12 pts)",
         "Menos de CLB 4 (0 pts)"
+        "CLB 6 (20 pts)",
+        "CLB 4 (12 pts)",
+        "CLB 5 (17 pts)",
+        "CLB 7 (22 pts)",
+        "CLB 8 o más (25 pts)",
     ], index=None, placeholder="Seleccione una opción...")
 
 with col13:
     clb_listening = st.selectbox("¿Cuál es tu nivel en Listening?", [
-        "CLB 8 o más (25 pts)",
-        "CLB 7 (22 pts)",
-        "CLB 6 (20 pts)",
-        "CLB 5 (17 pts)",
-        "CLB 4 (12 pts)",
         "Menos de CLB 4 (0 pts)"
+        "CLB 6 (20 pts)",
+        "CLB 4 (12 pts)",
+        "CLB 5 (17 pts)",
+        "CLB 7 (22 pts)",
+        "CLB 8 o más (25 pts)",
     ], index=None, placeholder="Seleccione una opción...")
 
 with col14:
     clb_writing = st.selectbox("¿Cuál es tu nivel en Writing?", [
-        "CLB 8 o más (25 pts)",
-        "CLB 7 (22 pts)",
-        "CLB 6 (20 pts)",
-        "CLB 5 (17 pts)",
-        "CLB 4 (12 pts)",
         "Menos de CLB 4 (0 pts)"
+        "CLB 6 (20 pts)",
+        "CLB 4 (12 pts)",
+        "CLB 5 (17 pts)",
+        "CLB 7 (22 pts)",
+        "CLB 8 o más (25 pts)",
     ], index=None, placeholder="Seleccione una opción...")
 
 puntos_por_clb = {
@@ -102,6 +102,8 @@ if segundo_idioma == "Sí":
 # Sumar todos los puntos
 puntos_totales_idioma = pts_speaking + pts_reading + pts_listening + pts_writing + pts_segundo_idioma
 
+st.divider()
+
 # 2. Edad
 st.header("2. Edad (75 pts máximo)")
 edad = st.selectbox("¿Qué edad tienes?", [
@@ -134,13 +136,17 @@ else:
 
 # 3. Experiencia laboral
 st.header("3. Experiencia laboral en los últimos 5 años (175 pts máximo)")
-experiencia = st.selectbox("¿Cuántos años de experiencia tienes?", [
-    "Menos de un año (0 pts)",
-    "1 año (40 pts)",
-    "2 años (50 pts)",
-    "3 años (60 pts)",
-    "4 años o más (75 pts)",
-], index=None, placeholder="Seleccione una opción...")
+
+col31, col32 = st.columns(2)
+
+with col31:
+    experiencia = st.selectbox("¿Cuántos años de experiencia tienes?", [
+        "Menos de un año (0 pts)",
+        "1 año (40 pts)",
+        "2 años (50 pts)",
+        "3 años (60 pts)",
+        "4 años o más (75 pts)",
+    ], index=None, placeholder="Seleccione una opción...")
 
 puntos_experiencia = {
     "Menos de un año (0 pts)": 0,
@@ -150,8 +156,9 @@ puntos_experiencia = {
     "4 años o más (75 pts)": 70,
 }
 
-licenciamiento = st.checkbox("Reconocido por el organismo de licenciamiento provincial (100 pts)")
-score_regional = 100 if licenciamiento else 0
+with col32:
+    licenciamiento = st.checkbox("Reconocido por el organismo de licenciamiento provincial (100 pts)")
+    score_regional = 100 if licenciamiento else 0
 
 if experiencia != None:
     score_experiencia = puntos_experiencia[experiencia] + score_regional
