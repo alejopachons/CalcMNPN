@@ -87,18 +87,19 @@ edad = st.selectbox("¿Qué edad tienes?", [
     "18 (20 pts)",
     "19 (30 pts)",
     "20 (40 pts)",
-    "21 (75 pts) a 45",
+    "21 a 45 (75 pts)",
     "46 (40 pts)",
     "47 (30 pts)",
     "48 (20 pts)",
     "49 (10 pts)",
     "Más de 50 (0 pts)"
-])
+], index=None, placeholder="Seleccione una opción...")
+
 puntos_edad = {
     "18 (20 pts)": 20,
     "19 (30 pts)": 30,
     "20 (40 pts)": 40,
-    "21 (75 pts) a 45": 75,
+    "21 a 45 (75 pts)": 75,
     "46 (40 pts)": 40,
     "47 (30 pts)": 30,
     "48 (20 pts)": 20,
@@ -122,7 +123,7 @@ puntos_experiencia = {
     "1 año (40 pts)": 40,
     "2 años (50 pts)": 50,
     "3 años (60 pts)": 60,
-    "4 años (75 pts)": 70,
+    "4 años o más (75 pts)": 70,
     "reconocido por el organismo de licenciamiento provincial (100 pts)": 100
 }
 score_experiencia = puntos_experiencia[experiencia]
