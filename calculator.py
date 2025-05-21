@@ -257,6 +257,9 @@ for label, points in opciones_manitoba_demand.items():
     if st.checkbox(f"{label} ({points} pts)", key=f"demanda_{label}"):
         score_demand += points
 
+if score_demand > 500:
+    score_demand = 500
+
 st.badge(f"{score_demand} puntos", color="orange")
 
 
