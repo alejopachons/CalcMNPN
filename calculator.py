@@ -199,7 +199,11 @@ puntos_conexion_mb = {
     "Amigo cercano o familiar lejano en Manitoba (50 pts)": 50,
     "Ninguna conexión (0 pts)": 0
 }
-score_conexion_mb = puntos_conexion_mb[conexion_mb]
+if conexion_mb != None:
+    score_conexion_mb = puntos_conexion_mb[conexion_mb]
+else:
+    st.warning("Por favor selecciona una opción para continuar.")
+
 
 # --- 5.2 Demanda de Manitoba (máximo 500 pts) ---
 st.subheader("5.2 Demanda de Manitoba (máx. 500 pts)")
@@ -215,7 +219,11 @@ puntos_manitoba_demand = {
     "Invitación para aplicar bajo una Iniciativa Estratégica (500 pts)": 500,
     "Ninguna (0 pts)": 0
 }
-score_demand = puntos_manitoba_demand[manitoba_demand]
+if manitoba_demand != None:
+    score_demand = puntos_manitoba_demand[manitoba_demand]
+else:
+        st.warning("Por favor selecciona una opción para continuar.")
+
 
 # --- 5.3 Desarrollo regional (máximo 50 pts) ---
 st.subheader("5.3 Desarrollo regional (máx. 50 pts)")
