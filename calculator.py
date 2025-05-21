@@ -106,7 +106,11 @@ puntos_edad = {
     "49 (10 pts)": 10,
     "Más de 50 (0 pts)": 0
 }
-score_edad = puntos_edad[edad]
+if edad != None:
+    pts_edad = puntos_edad[edad]
+    st.write(f"Puntos por edad: {pts_edad}")
+else:
+    st.warning("Por favor selecciona tu edad para continuar.")
 
 # 3. Experiencia laboral
 st.header("3. Experiencia laboral en los últimos 5 años (175 pts máximo)")
