@@ -73,7 +73,7 @@ if clb_listening != None:
 else:
     pts_listening = 0
 
-if clb_listening != None:
+if clb_writing != None:
     pts_writing = puntos_por_clb[clb_writing]
 else:
     pts_writing = 0
@@ -133,7 +133,6 @@ experiencia = st.selectbox("¿Cuántos años de experiencia tienes?", [
     "2 años (50 pts)",
     "3 años (60 pts)",
     "4 años o más (75 pts)",
-    "reconocido por el organismo de licenciamiento provincial (100 pts)"
 ], index=None, placeholder="Seleccione una opción...")
 
 puntos_experiencia = {
@@ -142,10 +141,13 @@ puntos_experiencia = {
     "2 años (50 pts)": 50,
     "3 años (60 pts)": 60,
     "4 años o más (75 pts)": 70,
-    "reconocido por el organismo de licenciamiento provincial (100 pts)": 100
 }
+
+licenciamiento = st.checkbox("reconocido por el organismo de licenciamiento provincial (100 pts)")
+score_regional = 100 if licenciamiento else 0
+
 if experiencia != None:
-    score_experiencia = puntos_experiencia[experiencia]
+    score_experiencia = puntos_experiencia[experiencia] + score_regional
 else:
     st.warning("Por favor selecciona una opción para continuar.")
 
