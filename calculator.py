@@ -35,7 +35,7 @@ with col12:
         "Menos de CLB 4 (0 pts)"
     ], index=None, placeholder="Seleccione una opción...")
 
-with col13
+with col13:
     clb_listening = st.selectbox("¿Cuál es tu nivel en Listening?", [
         "CLB 8 o más (25 pts)",
         "CLB 7 (22 pts)",
