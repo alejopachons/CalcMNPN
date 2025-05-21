@@ -267,21 +267,26 @@ st.divider()
 st.header("6. Evaluación de riesgo (Risk Assessment)")
 st.badge("Máximo -200 puntos")
 
-riesgos = st.checkbox("Selecciona si alguno de estos factores aplica:", [
-    "Has trabajado en otra provincia de Canadá",
-    "Has estudiado en otra provincia de Canadá",
-    "Tienes familiares en otra provincia de Canadá",
-    "Has presentado una solicitud de inmigración a otra provincia"
+st.markdown("### Selecciona si alguno de estos factores aplica:")
+
+trabajo_otra_prov = st.checkbox("Has trabajado en otra provincia de Canadá")
+estudio_otra_prov = st.checkbox("Has estudiado en otra provincia de Canadá")
+familia_otra_prov = st.checkbox("Tienes familiares en otra provincia de Canadá")
+solicitud_otra_prov = st.checkbox("Has presentado una solicitud de inmigración a otra provincia")
+
+# Si al menos uno está seleccionado, se considera que hay un riesgo
+riesgos_seleccionados = any([
+    trabajo_otra_prov,
+    estudio_otra_prov,
+    familia_otra_prov,
+    solicitud_otra_prov
 ])
 
-# Asignar puntajes individualmente
-riesgo_puntos = {
-    "Has trabajado en otra provincia de Canadá": -100,
-    "Has estudiado en otra provincia de Canadá": -100,
-    "Tienes familiares en otra provincia de Canadá": 0,
-    "Has presentado una solicitud de inmigración a otra provincia": 0
-}
-puntos_riesgo = sum([riesgo_puntos[riesgo] for riesgo in riesgos])
+if riesgos_seleccionados:
+    st.warning("Advertencia: Uno o más factores de riesgo pueden afectar tu elegibilidad.")
+    puntos_riesgo = -100  # o el puntaje que corresponda
+else:
+    puntos_riesgo = 0
 
 st.divider()
 
