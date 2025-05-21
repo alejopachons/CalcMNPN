@@ -189,7 +189,7 @@ conexion_mb = st.selectbox("Selecciona tu conexión más fuerte con Manitoba:", 
     "Estudios postsecundarios en Manitoba (1 año) (50 pts)",
     "Amigo cercano o familiar lejano en Manitoba (50 pts)",
     "Ninguna conexión (0 pts)"
-])
+], index=None, placeholder="Seleccione una opción...")
 
 puntos_conexion_mb = {
     "Familiar cercano en Manitoba (200 pts)": 200,
@@ -208,7 +208,7 @@ manitoba_demand = st.selectbox("¿Cuál de estas condiciones aplica a tu perfil?
     "Empleo actual en Manitoba por 6 meses o más + oferta a largo plazo (500 pts)",
     "Invitación para aplicar bajo una Iniciativa Estratégica (500 pts)",
     "Ninguna (0 pts)"
-])
+], index=None, placeholder="Seleccione una opción...")
 
 puntos_manitoba_demand = {
     "Empleo actual en Manitoba por 6 meses o más + oferta a largo plazo (500 pts)": 500,
@@ -235,7 +235,7 @@ riesgos = st.multiselect("Selecciona si alguno de estos factores aplica:", [
     "Has estudiado en otra provincia de Canadá",
     "Tienes familiares en otra provincia de Canadá",
     "Has presentado una solicitud de inmigración a otra provincia"
-], index=None, placeholder="Seleccione una opción...")
+])
 
 # Asignar puntajes individualmente
 riesgo_puntos = {
@@ -244,10 +244,7 @@ riesgo_puntos = {
     "Tienes familiares en otra provincia de Canadá": 0,
     "Has presentado una solicitud de inmigración a otra provincia": 0
 }
-if riesgos != None:
-    puntos_riesgo = sum([riesgo_puntos[riesgo] for riesgo in riesgos])
-else:
-        st.warning("Por favor selecciona una opción para continuar.")
+puntos_riesgo = sum([riesgo_puntos[riesgo] for riesgo in riesgos])
 
 
 # Puntaje total
