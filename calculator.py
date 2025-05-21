@@ -19,42 +19,42 @@ col13, col14 = st.columns (2)
 with col11: 
     # Selección de nivel CLB para cada habilidad del idioma principal
     clb_speaking = st.selectbox("¿Cuál es tu nivel en Speaking?", [
-        "Menos de CLB 4 (0 pts)"
+        "Menos de CLB 4 (0 pts)",
         "CLB 6 (20 pts)",
         "CLB 4 (12 pts)",
         "CLB 5 (17 pts)",
         "CLB 7 (22 pts)",
-        "CLB 8 o más (25 pts)",
+        "CLB 8 o más (25 pts)"
     ], index=None, placeholder="Seleccione una opción...")
 
 with col12:
     clb_reading = st.selectbox("¿Cuál es tu nivel en Reading?", [
-        "Menos de CLB 4 (0 pts)"
+        "Menos de CLB 4 (0 pts)",
         "CLB 6 (20 pts)",
         "CLB 4 (12 pts)",
         "CLB 5 (17 pts)",
         "CLB 7 (22 pts)",
-        "CLB 8 o más (25 pts)",
+        "CLB 8 o más (25 pts)"
     ], index=None, placeholder="Seleccione una opción...")
 
 with col13:
     clb_listening = st.selectbox("¿Cuál es tu nivel en Listening?", [
-        "Menos de CLB 4 (0 pts)"
+        "Menos de CLB 4 (0 pts)",
         "CLB 6 (20 pts)",
         "CLB 4 (12 pts)",
         "CLB 5 (17 pts)",
         "CLB 7 (22 pts)",
-        "CLB 8 o más (25 pts)",
+        "CLB 8 o más (25 pts)"
     ], index=None, placeholder="Seleccione una opción...")
 
 with col14:
     clb_writing = st.selectbox("¿Cuál es tu nivel en Writing?", [
-        "Menos de CLB 4 (0 pts)"
+        "Menos de CLB 4 (0 pts)",
         "CLB 6 (20 pts)",
         "CLB 4 (12 pts)",
         "CLB 5 (17 pts)",
         "CLB 7 (22 pts)",
-        "CLB 8 o más (25 pts)",
+        "CLB 8 o más (25 pts)"
     ], index=None, placeholder="Seleccione una opción...")
 
 puntos_por_clb = {
@@ -199,7 +199,7 @@ puntos_educacion = {
 if educacion != None:
     score_educacion = puntos_educacion[educacion]
 else:
-    st.warning("Por favor selecciona una opción para continuar.")
+    score_educacion = 0
 
 st.divider()
 
@@ -267,7 +267,7 @@ st.divider()
 st.header("6. Evaluación de riesgo (Risk Assessment)")
 st.badge("Máximo -200 puntos")
 
-riesgos = st.multiselect("Selecciona si alguno de estos factores aplica:", [
+riesgos = st.checkbox("Selecciona si alguno de estos factores aplica:", [
     "Has trabajado en otra provincia de Canadá",
     "Has estudiado en otra provincia de Canadá",
     "Tienes familiares en otra provincia de Canadá",
