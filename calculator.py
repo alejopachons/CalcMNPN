@@ -20,9 +20,9 @@ with col11:
     # Selección de nivel CLB para cada habilidad del idioma principal
     clb_speaking = st.selectbox("¿Cuál es tu nivel en Speaking?", [
         "Menos de CLB 4 (0 pts)",
-        "CLB 6 (20 pts)",
         "CLB 4 (12 pts)",
         "CLB 5 (17 pts)",
+        "CLB 6 (20 pts)",
         "CLB 7 (22 pts)",
         "CLB 8 o más (25 pts)"
     ], index=None, placeholder="Seleccione una opción...")
@@ -30,9 +30,9 @@ with col11:
 with col12:
     clb_reading = st.selectbox("¿Cuál es tu nivel en Reading?", [
         "Menos de CLB 4 (0 pts)",
-        "CLB 6 (20 pts)",
         "CLB 4 (12 pts)",
         "CLB 5 (17 pts)",
+        "CLB 6 (20 pts)",
         "CLB 7 (22 pts)",
         "CLB 8 o más (25 pts)"
     ], index=None, placeholder="Seleccione una opción...")
@@ -40,9 +40,9 @@ with col12:
 with col13:
     clb_listening = st.selectbox("¿Cuál es tu nivel en Listening?", [
         "Menos de CLB 4 (0 pts)",
-        "CLB 6 (20 pts)",
         "CLB 4 (12 pts)",
         "CLB 5 (17 pts)",
+        "CLB 6 (20 pts)",
         "CLB 7 (22 pts)",
         "CLB 8 o más (25 pts)"
     ], index=None, placeholder="Seleccione una opción...")
@@ -50,9 +50,9 @@ with col13:
 with col14:
     clb_writing = st.selectbox("¿Cuál es tu nivel en Writing?", [
         "Menos de CLB 4 (0 pts)",
-        "CLB 6 (20 pts)",
         "CLB 4 (12 pts)",
         "CLB 5 (17 pts)",
+        "CLB 6 (20 pts)",
         "CLB 7 (22 pts)",
         "CLB 8 o más (25 pts)"
     ], index=None, placeholder="Seleccione una opción...")
