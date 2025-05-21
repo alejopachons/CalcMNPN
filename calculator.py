@@ -258,12 +258,6 @@ for label, points in opciones_manitoba_demand.items():
         if points > score_demand:
             score_demand = points
 
-# Si ninguna opción de demanda es marcada explícitamente, y el score_demand sigue siendo 0,
-# significa que "Ninguna" aplica.
-if score_demand == 0 and not any(st.session_state.get(f"demanda_{label}", False) for label in opciones_manitoba_demand if label != "Ninguna"):
-    st.markdown("_(Ninguna condición de demanda seleccionada)_")
-
-
 st.badge(f"{score_demand} puntos", color="orange")
 
 
