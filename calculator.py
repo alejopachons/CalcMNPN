@@ -134,6 +134,8 @@ if edad != None:
 else:
     st.warning("Por favor selecciona tu edad para continuar.")
 
+st.divider()
+
 # 3. Experiencia laboral
 st.header("3. Experiencia laboral en los últimos 5 años (175 pts máximo)")
 
@@ -165,6 +167,8 @@ if experiencia != None:
 else:
     st.warning("Por favor selecciona una opción para continuar.")
 
+st.divider()
+
 # 4. Educación
 st.header("4. Nivel de educación")
 educacion = st.selectbox("Selecciona tu nivel educativo (125 pts máximo)", [
@@ -192,6 +196,7 @@ if educacion != None:
 else:
     st.warning("Por favor selecciona una opción para continuar.")
 
+st.divider()
 
 st.header("5. Adaptabilidad")
 
@@ -218,7 +223,7 @@ puntos_conexion_mb = {
 if conexion_mb != None:
     score_conexion_mb = puntos_conexion_mb[conexion_mb]
 else:
-    st.warning("Por favor selecciona una opción para continuar.")
+    score_conexion_mb = 0
 
 
 # --- 5.2 Demanda de Manitoba (máximo 500 pts) ---
@@ -238,7 +243,7 @@ puntos_manitoba_demand = {
 if manitoba_demand != None:
     score_demand = puntos_manitoba_demand[manitoba_demand]
 else:
-        st.warning("Por favor selecciona una opción para continuar.")
+    score_demand = 0
 
 
 # --- 5.3 Desarrollo regional (máximo 50 pts) ---
@@ -250,6 +255,7 @@ score_regional = 50 if fuera_de_wpg else 0
 # --- Puntaje total de adaptabilidad ---
 score_adaptabilidad = score_conexion_mb + score_demand + score_regional
 
+st.divider()
 
 # 6. Evaluación de Riesgo (hasta -200 pts)
 st.header("6. Evaluación de riesgo (Risk Assessment)")
@@ -270,6 +276,7 @@ riesgo_puntos = {
 }
 puntos_riesgo = sum([riesgo_puntos[riesgo] for riesgo in riesgos])
 
+st.divider()
 
 # Puntaje total
 st.subheader("🎯 Tu puntaje total es:")
