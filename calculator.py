@@ -20,7 +20,7 @@ clb_speaking = st.selectbox("¿Cuál es tu nivel en Speaking?", [
     "CLB 5 (17 pts)",
     "CLB 4 (12 pts)",
     "Menos de CLB 4 (0 pts)"
-])
+], index=None, placeholder="Seleccione una opción...")
 
 clb_reading = st.selectbox("¿Cuál es tu nivel en Reading?", [
     "CLB 8 o más (25 pts)",
@@ -29,7 +29,7 @@ clb_reading = st.selectbox("¿Cuál es tu nivel en Reading?", [
     "CLB 5 (17 pts)",
     "CLB 4 (12 pts)",
     "Menos de CLB 4 (0 pts)"
-])
+], index=None, placeholder="Seleccione una opción...")
 
 clb_listening = st.selectbox("¿Cuál es tu nivel en Listening?", [
     "CLB 8 o más (25 pts)",
@@ -38,7 +38,7 @@ clb_listening = st.selectbox("¿Cuál es tu nivel en Listening?", [
     "CLB 5 (17 pts)",
     "CLB 4 (12 pts)",
     "Menos de CLB 4 (0 pts)"
-])
+], index=None, placeholder="Seleccione una opción...")
 
 clb_writing = st.selectbox("¿Cuál es tu nivel en Writing?", [
     "CLB 8 o más (25 pts)",
@@ -47,7 +47,7 @@ clb_writing = st.selectbox("¿Cuál es tu nivel en Writing?", [
     "CLB 5 (17 pts)",
     "CLB 4 (12 pts)",
     "Menos de CLB 4 (0 pts)"
-])
+], index=None, placeholder="Seleccione una opción...")
 
 puntos_por_clb = {
     "CLB 8 o más (25 pts)": 25,
@@ -58,11 +58,25 @@ puntos_por_clb = {
     "Menos de CLB 4 (0 pts)": 0
 }
 
-# Calcular puntos de idioma principal
-pts_speaking = puntos_por_clb[clb_speaking]
-pts_reading = puntos_por_clb[clb_reading]
-pts_listening = puntos_por_clb[clb_listening]
-pts_writing = puntos_por_clb[clb_writing]
+if clb_speaking != None:
+    pts_speaking = puntos_por_clb[clb_speaking]
+else:
+    st.warning("Por favor selecciona una opción para continuar.")
+
+if clb_reading != None:
+    pts_reading = puntos_por_clb[clb_reading]
+else:
+    st.warning("Por favor selecciona una opción para continuar.")
+
+if clb_listening != None:
+    pts_listening = puntos_por_clb[clb_listening]
+else:
+    st.warning("Por favor selecciona una opción para continuar.")
+
+if clb_listening != None:
+    pts_writing = puntos_por_clb[clb_writing]
+else:
+    st.warning("Por favor selecciona una opción para continuar.")
 
 # Preguntar por segundo idioma justo después
 segundo_idioma = st.radio("¿Tienes un segundo idioma?", ("No", "Sí"))
@@ -108,7 +122,6 @@ puntos_edad = {
 }
 if edad != None:
     pts_edad = puntos_edad[edad]
-    st.write(f"Puntos por edad: {pts_edad}")
 else:
     st.warning("Por favor selecciona tu edad para continuar.")
 
@@ -121,7 +134,8 @@ experiencia = st.selectbox("¿Cuántos años de experiencia tienes?", [
     "3 años (60 pts)",
     "4 años o más (75 pts)",
     "reconocido por el organismo de licenciamiento provincial (100 pts)"
-])
+], index=None, placeholder="Seleccione una opción...")
+
 puntos_experiencia = {
     "Menos de un año (0 pts)": 0,
     "1 año (40 pts)": 40,
@@ -130,7 +144,10 @@ puntos_experiencia = {
     "4 años o más (75 pts)": 70,
     "reconocido por el organismo de licenciamiento provincial (100 pts)": 100
 }
-score_experiencia = puntos_experiencia[experiencia]
+if experiencia != None:
+    score_experiencia = puntos_experiencia[experiencia]
+else:
+    st.warning("Por favor selecciona una opción para continuar.")
 
 # 4. Educación
 st.header("4. Nivel de educación")
@@ -143,7 +160,7 @@ educacion = st.selectbox("Selecciona tu nivel educativo (125 pts máximo)", [
     "Certificado en oficios (Trade certificate) (70 pts)",
     "Sin educación postsecundaria formal (0 pts)"
     
-])
+], index=None, placeholder="Seleccione una opción...")
 puntos_educacion = {
     "Maestría o doctorado (125 pts)": 125,
     "Dos programas postsecundarios de al menos dos años cada uno (115 pts)": 115,
@@ -153,7 +170,12 @@ puntos_educacion = {
     "Certificado en oficios (Trade certificate) (70 pts)": 70,
     "Sin educación postsecundaria formal (0 pts)": 0
 }
-score_educacion = puntos_educacion[educacion]
+
+if educacion != None
+    score_educacion = puntos_educacion[educacion]
+else:
+    st.warning("Por favor selecciona una opción para continuar.")
+
 
 st.header("5. Adaptabilidad")
 
@@ -213,7 +235,7 @@ riesgos = st.multiselect("Selecciona si alguno de estos factores aplica:", [
     "Has estudiado en otra provincia de Canadá",
     "Tienes familiares en otra provincia de Canadá",
     "Has presentado una solicitud de inmigración a otra provincia"
-])
+], index=None, placeholder="Seleccione una opción...")
 
 # Asignar puntajes individualmente
 riesgo_puntos = {
@@ -222,8 +244,10 @@ riesgo_puntos = {
     "Tienes familiares en otra provincia de Canadá": 0,
     "Has presentado una solicitud de inmigración a otra provincia": 0
 }
-
-puntos_riesgo = sum([riesgo_puntos[riesgo] for riesgo in riesgos])
+if riesgos != None:
+    puntos_riesgo = sum([riesgo_puntos[riesgo] for riesgo in riesgos])
+else:
+        st.warning("Por favor selecciona una opción para continuar.")
 
 
 # Puntaje total
