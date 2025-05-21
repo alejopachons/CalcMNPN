@@ -23,12 +23,13 @@ clb = st.selectbox("¿Cuál es tu CLB?", [
 ])
 puntos_idioma = {
     "CLB 8 o más (25 pts)": 25,
-    "CLB 7 (22 pts)": 22,
-    "CLB 6 (20 pts)": 20,
-    "CLB 5 (17 pts)": 17,
-    "CLB 4 (12 pts)": 12,
+    "CLB 7 (22 pts por banda)": 22,
+    "CLB 6 (20 pts por banda)": 20,
+    "CLB 5 (17 pts por banda)": 17,
+    "CLB 4 (12 pts por banda)": 12,
     "Menos de CLB 4 (0 pts)": 0,
-    "Segundo idioma (25 pts)": 25
+    "Segundo idioma - CLB 5 o superior [overall] (25 pts)": 25
+    
 }
 score_idioma = puntos_idioma[clb]
 
@@ -100,23 +101,55 @@ puntos_educacion = {
 }
 score_educacion = puntos_educacion[educacion]
 
-# 5. Adaptabilidad
-st.header("5. Adaptabilidad (500 pts máximo)")
-conexion = st.selectbox("¿Cuál es tu conexión principal con Manitoba?", [
-    "Amigo o familiar cercano en Manitoba (25 pts)",
-    "Experiencia laboral pasada en Manitoba (40 pts)",
-    "Educación en Manitoba (30 pts)",
-    "Invitación directa del MPNP (500 pts)",
-    "Ninguna"
+st.header("5. Adaptabilidad (máximo 500 pts)")
+
+# --- 5.1 Conexión con Manitoba (máximo 200 pts) ---
+st.subheader("5.1 Conexión con Manitoba (máx. 200 pts)")
+
+conexion_mb = st.selectbox("Selecciona tu conexión más fuerte con Manitoba:", [
+    "Familiar cercano en Manitoba (200 pts)",
+    "Experiencia laboral previa en Manitoba (100 pts)",
+    "Estudios postsecundarios en Manitoba (2 años o más) (100 pts)",
+    "Estudios postsecundarios en Manitoba (1 año) (50 pts)",
+    "Amigo cercano o familiar lejano en Manitoba (50 pts)",
+    "Ninguna conexión (0 pts)"
 ])
-puntos_conexion = {
-    "Amigo o familiar cercano en Manitoba (25 pts)": 25,
-    "Experiencia laboral pasada en Manitoba (40 pts)": 40,
-    "Educación en Manitoba (30 pts)": 30,
-    "Invitación directa del MPNP (500 pts)": 500,
-    "Ninguna": 0
+
+puntos_conexion_mb = {
+    "Familiar cercano en Manitoba (200 pts)": 200,
+    "Experiencia laboral previa en Manitoba (100 pts)": 100,
+    "Estudios postsecundarios en Manitoba (2 años o más) (100 pts)": 100,
+    "Estudios postsecundarios en Manitoba (1 año) (50 pts)": 50,
+    "Amigo cercano o familiar lejano en Manitoba (50 pts)": 50,
+    "Ninguna conexión (0 pts)": 0
 }
-score_conexion = puntos_conexion[conexion]
+score_conexion_mb = puntos_conexion_mb[conexion_mb]
+
+# --- 5.2 Demanda de Manitoba (máximo 500 pts) ---
+st.subheader("5.2 Demanda de Manitoba (máx. 500 pts)")
+
+manitoba_demand = st.selectbox("¿Cuál de estas condiciones aplica a tu perfil?", [
+    "Empleo actual en Manitoba por 6 meses o más + oferta a largo plazo (500 pts)",
+    "Invitación para aplicar bajo una Iniciativa Estratégica (500 pts)",
+    "Ninguna (0 pts)"
+])
+
+puntos_manitoba_demand = {
+    "Empleo actual en Manitoba por 6 meses o más + oferta a largo plazo (500 pts)": 500,
+    "Invitación para aplicar bajo una Iniciativa Estratégica (500 pts)": 500,
+    "Ninguna (0 pts)": 0
+}
+score_demand = puntos_manitoba_demand[manitoba_demand]
+
+# --- 5.3 Desarrollo regional (máximo 50 pts) ---
+st.subheader("5.3 Desarrollo regional (máx. 50 pts)")
+
+fuera_de_wpg = st.checkbox("¿Planeas establecerte fuera de Winnipeg? (50 pts)")
+score_regional = 50 if fuera_de_wpg else 0
+
+# --- Puntaje total de adaptabilidad ---
+score_adaptabilidad = score_conexion_mb + score_demand + score_regional
+
 
 # 6. Evaluación de Riesgo (hasta -200 pts)
 st.header("6. Evaluación de riesgo (Risk Assessment)")
@@ -139,10 +172,7 @@ riesgo_puntos = {
 puntos_riesgo = sum([riesgo_puntos[riesgo] for riesgo in riesgos])
 
 
-
-
-
 # Puntaje total
 st.subheader("🎯 Tu puntaje total es:")
-puntaje_total = score_conexion + score_educacion + score_experiencia + score_idioma + score_adaptabilidad
+puntaje_total = score_educacion + score_experiencia + score_idioma + score_edad + score_adaptabilidad + puntos_riesgo
 st.metric(label="Puntaje MPNP estimado", value=puntaje_total)
