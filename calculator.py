@@ -103,7 +103,7 @@ if segundo_idioma == "Sí":
 # Sumar todos los puntos
 puntos_totales_idioma = pts_speaking + pts_reading + pts_listening + pts_writing + pts_segundo_idioma
 
-st.badge(puntos_totales_idioma, icon=":material/check:", color="green")
+st.badge(str(puntos_totales_idioma), icon=":material/check:", color="green")
 
 st.divider()
 
@@ -138,7 +138,7 @@ if edad != None:
 else:
     pts_edad = 0
 
-st.badge(pts_edad, icon=":material/check:", color="green")
+st.badge(str(pts_edad), icon=":material/check:", color="green")
 
 st.divider()
 
@@ -174,7 +174,7 @@ if experiencia != None:
 else:
     score_experiencia = 0
     
-st.badge(score_experiencia, icon=":material/check:", color="green")
+st.badge(str(score_experiencia), icon=":material/check:", color="green")
 
 
 st.divider()
@@ -208,7 +208,7 @@ if educacion != None:
 else:
     score_educacion = 0
 
-st.badge(score_educacion, icon=":material/check:", color="green")
+st.badge(str(score_educacion), icon=":material/check:", color="green")
 
 st.divider()
 
@@ -240,7 +240,7 @@ if conexion_mb != None:
 else:
     score_conexion_mb = 0
 
-st.badge(score_educacion, color="orange")
+st.badge(str(score_educacion), color="orange")
 
 
 # --- 5.2 Demanda de Manitoba (máximo 500 pts) ---
@@ -262,7 +262,7 @@ if manitoba_demand != None:
 else:
     score_demand = 0
 
-st.badge(score_demand, color="orange")
+st.badge(str(score_demand), color="orange")
 
 
 # --- 5.3 Desarrollo regional (máximo 50 pts) ---
@@ -271,7 +271,7 @@ st.subheader("5.3 Desarrollo regional (máx. 50 pts)")
 fuera_de_wpg = st.checkbox("¿Planeas establecerte fuera de Winnipeg? (50 pts)")
 score_regional = 50 if fuera_de_wpg else 0
 
-st.badge(score_regional, color="orange")
+st.badge(str(score_regional), color="orange")
 
 
 # --- Puntaje total de adaptabilidad ---
@@ -280,7 +280,7 @@ score_adaptabilidad = score_conexion_mb + score_demand + score_regional
 if score_adaptabilidad >= 500:
     score_adaptabilidad = 500
 
-st.badge(score_adaptabilidad, icon=":material/check:", color="green")
+st.badge(str(score_adaptabilidad), icon=":material/check:", color="green")
 
 st.divider()
 
@@ -308,7 +308,7 @@ riesgo_solicitud_otra_provincia = st.checkbox("Has presentado una solicitud de i
 if riesgo_solicitud_otra_provincia:
     puntos_riesgo_total -= 0
 
-st.badge(puntos_riesgo_total, icon=":material/check:", color="red")
+st.badge(str(puntos_riesgo_total), icon=":material/check:", color="red")
 
 st.divider()
 
