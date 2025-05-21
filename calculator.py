@@ -212,22 +212,6 @@ st.badge(f"{score_educacion} puntos", icon=":material/check:", color="green")
 
 st.divider()
 
-Claro, aquí tienes el fragmento de código adaptado para usar checkboxes para las secciones de "Conexión con Manitoba" y "Demanda de Manitoba", sumando los puntos al final.
-
-He asumido la siguiente lógica para los checkboxes:
-
-Para "Conexión con Manitoba", el usuario solo puede tener una conexión más fuerte. Por lo tanto, usaré un enfoque donde solo se puede seleccionar una opción, pero con checkboxes individuales (un "radio button" es más apropiado aquí, pero dado que pediste checkboxes, te daré la lógica para ello, con la salvedad de que el usuario podría marcar más de uno). Si el objetivo es seleccionar solo una, un st.radio sería ideal. Como pediste checkbox, lo haré con esa funcionalidad, y explicaré la consideración.
-Para "Demanda de Manitoba", la lógica es similar: solo una de esas condiciones aplica o ninguna.
-Importante: Si el objetivo es que el usuario seleccione solo una de las opciones en "Conexión con Manitoba" y "Demanda de Manitoba", st.radio es el widget más adecuado, no st.checkbox. Sin embargo, siguiendo tu solicitud de checkbox, haré el código de tal manera que si el usuario marca múltiples checkboxes, se priorice la opción de mayor puntaje (o la última marcada, dependiendo de la implementación).
-
-Dada la estructura de puntos donde solo una opción debe ser la "más fuerte" o la que "aplica", el uso de st.radio sería funcionalmente más preciso. Sin embargo, si insistes en checkbox para la interfaz, podríamos simular el comportamiento de radio buttons.
-
-Aquí tienes el fragmento solicitado, priorizando la opción de mayor puntaje si se seleccionan múltiples en "Conexión" y "Demanda":
-
-Python
-
-import streamlit as st
-
 st.header("5. Adaptabilidad")
 st.badge("Máximo 500 puntos")
 
