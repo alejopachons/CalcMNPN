@@ -134,7 +134,7 @@ puntos_edad = {
 if edad != None:
     pts_edad = puntos_edad[edad]
 else:
-    st.warning("Por favor selecciona tu edad para continuar.")
+    pts_edad = 0
 
 st.divider()
 
@@ -267,30 +267,29 @@ st.divider()
 st.header("6. Evaluación de riesgo (Risk Assessment)")
 st.badge("Máximo -200 puntos")
 
-st.markdown("### Selecciona si alguno de estos factores aplica:")
+puntos_riesgo_total = 0
 
-trabajo_otra_prov = st.checkbox("Has trabajado en otra provincia de Canadá")
-estudio_otra_prov = st.checkbox("Has estudiado en otra provincia de Canadá")
-familia_otra_prov = st.checkbox("Tienes familiares en otra provincia de Canadá")
-solicitud_otra_prov = st.checkbox("Has presentado una solicitud de inmigración a otra provincia")
+st.write("Selecciona si alguno de estos factores de riesgo aplica a tu situación:")
 
-# Si al menos uno está seleccionado, se considera que hay un riesgo
-riesgos_seleccionados = any([
-    trabajo_otra_prov,
-    estudio_otra_prov,
-    familia_otra_prov,
-    solicitud_otra_prov
-])
+riesgo_trabajo_otra_provincia = st.checkbox("Has tenido experiencia laboral en otra provincia de Canadá")
+if riesgo_trabajo_otra_provincia:
+    puntos_riesgo_total -= 100
 
-if riesgos_seleccionados:
-    st.warning("Advertencia: Uno o más factores de riesgo pueden afectar tu elegibilidad.")
-    puntos_riesgo = -100  # o el puntaje que corresponda
-else:
-    puntos_riesgo = 0
+riesgo_estudio_otra_provincia = st.checkbox("Has estudiado en otra provincia de Canadá")
+if riesgo_estudio_otra_provincia:
+    puntos_riesgo_total -= 100
+
+riesgo_familiar_otra_provincia = st.checkbox("Tienes un familiar cercano en otra provincia de Canadá y ningún familiar cercano en Manitoba")
+if riesgo_familiar_otra_provincia:
+    puntos_riesgo_total -= 0
+
+riesgo_solicitud_otra_provincia = st.checkbox("Has presentado una solicitud de inmigración previa a otra provincia de Canadá")
+if riesgo_solicitud_otra_provincia:
+    puntos_riesgo_total -= 0
 
 st.divider()
 
 # Puntaje total
 st.subheader("🎯 Tu puntaje total es:")
-puntaje_total = score_educacion + score_experiencia + puntos_totales_idioma + score_edad + score_adaptabilidad + puntos_riesgo
+puntaje_total = score_educacion + score_experiencia + puntos_totales_idioma + puntos_edad + score_adaptabilidad + puntos_riesgo_total
 st.metric(label="Puntaje MPNP estimado", value=puntaje_total)
