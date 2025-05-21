@@ -183,7 +183,7 @@ st.divider()
 st.header("4. Nivel de educación")
 st.badge("Máximo 125 puntos")
 
-educacion = st.selectbox("Selecciona tu nivel educativo (125 pts máximo)", [
+educacion = st.selectbox("Selecciona tu nivel educativo", [
     "Maestría o doctorado (125 pts)",
     "Dos programas postsecundarios de al menos dos años cada uno (115 pts)",
     "Un programa postsecundario de tres años o más (110 pts)",
@@ -217,6 +217,8 @@ st.badge("Máximo 500 puntos")
 
 # --- 5.1 Conexión con Manitoba (máximo 200 pts) ---
 st.subheader("5.1 Conexión con Manitoba (máx. 200 pts)")
+st.badge("Máximo 200 puntos", color="gray")
+
 
 # Diccionario de opciones y sus puntos
 opciones_conexion_mb = {
@@ -250,7 +252,8 @@ st.badge(f"{score_conexion_mb} puntos", color="orange")
 
 
 # --- 5.2 Demanda de Manitoba (máximo 500 pts) ---
-st.subheader("5.2 Demanda de Manitoba (máx. 500 pts)")
+st.subheader("5.2 Demanda de Manitoba")
+st.badge("Máximo 500 puntos", color="gray")
 
 # Diccionario de opciones y sus puntos
 opciones_manitoba_demand = {
@@ -280,7 +283,9 @@ st.badge(f"{score_demand} puntos", color="orange")
 
 
 # --- 5.3 Desarrollo regional (máximo 50 pts) ---
-st.subheader("5.3 Desarrollo regional (máx. 50 pts)")
+st.subheader("5.3 Desarrollo regional")
+st.badge("Máximo 50 puntos", color="gray")
+
 
 fuera_de_wpg = st.checkbox("¿Planeas establecerte fuera de Winnipeg? (50 pts)", key="regional_dev")
 score_regional = 50 if fuera_de_wpg else 0
