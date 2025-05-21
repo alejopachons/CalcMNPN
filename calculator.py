@@ -10,7 +10,8 @@ st.markdown(
     unsafe_allow_html=True
 )
 
-st.header("1. Idioma principal (125 pts máximo)")
+st.header("1. Idioma principal")
+st.badge("Máximo 125 puntos")
 
 col11, col12 = st.columns (2)
 col13, col14 = st.columns (2)
@@ -105,7 +106,8 @@ puntos_totales_idioma = pts_speaking + pts_reading + pts_listening + pts_writing
 st.divider()
 
 # 2. Edad
-st.header("2. Edad (75 pts máximo)")
+st.header("2. Edad")
+st.badge("Máximo 75 puntos")
 edad = st.selectbox("¿Qué edad tienes?", [
     "18 (20 pts)",
     "19 (30 pts)",
@@ -137,7 +139,8 @@ else:
 st.divider()
 
 # 3. Experiencia laboral
-st.header("3. Experiencia laboral en los últimos 5 años (175 pts máximo)")
+st.header("3. Experiencia laboral en los últimos 5 años")
+st.badge("Máximo 175 puntos")
 
 col31, col32 = st.columns(2)
 
@@ -171,6 +174,8 @@ st.divider()
 
 # 4. Educación
 st.header("4. Nivel de educación")
+st.badge("Máximo 125 puntos")
+
 educacion = st.selectbox("Selecciona tu nivel educativo (125 pts máximo)", [
     "Maestría o doctorado (125 pts)",
     "Dos programas postsecundarios de al menos dos años cada uno (115 pts)",
@@ -199,6 +204,7 @@ else:
 st.divider()
 
 st.header("5. Adaptabilidad")
+st.badge("Máximo 500 puntos")
 
 # --- 5.1 Conexión con Manitoba (máximo 200 pts) ---
 st.subheader("5.1 Conexión con Manitoba (máx. 200 pts)")
@@ -259,6 +265,7 @@ st.divider()
 
 # 6. Evaluación de Riesgo (hasta -200 pts)
 st.header("6. Evaluación de riesgo (Risk Assessment)")
+st.badge("Máximo -200 puntos")
 
 riesgos = st.multiselect("Selecciona si alguno de estos factores aplica:", [
     "Has trabajado en otra provincia de Canadá",
