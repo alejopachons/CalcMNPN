@@ -162,7 +162,7 @@ puntos_experiencia = {
     "1 año (40 pts)": 40,
     "2 años (50 pts)": 50,
     "3 años (60 pts)": 60,
-    "4 años o más (75 pts)": 70,
+    "4 años o más (75 pts)": 75,
 }
 
 with col32:
@@ -212,33 +212,55 @@ st.badge(f"{score_educacion} puntos", icon=":material/check:", color="green")
 
 st.divider()
 
+Claro, aquí tienes el fragmento de código adaptado para usar checkboxes para las secciones de "Conexión con Manitoba" y "Demanda de Manitoba", sumando los puntos al final.
+
+He asumido la siguiente lógica para los checkboxes:
+
+Para "Conexión con Manitoba", el usuario solo puede tener una conexión más fuerte. Por lo tanto, usaré un enfoque donde solo se puede seleccionar una opción, pero con checkboxes individuales (un "radio button" es más apropiado aquí, pero dado que pediste checkboxes, te daré la lógica para ello, con la salvedad de que el usuario podría marcar más de uno). Si el objetivo es seleccionar solo una, un st.radio sería ideal. Como pediste checkbox, lo haré con esa funcionalidad, y explicaré la consideración.
+Para "Demanda de Manitoba", la lógica es similar: solo una de esas condiciones aplica o ninguna.
+Importante: Si el objetivo es que el usuario seleccione solo una de las opciones en "Conexión con Manitoba" y "Demanda de Manitoba", st.radio es el widget más adecuado, no st.checkbox. Sin embargo, siguiendo tu solicitud de checkbox, haré el código de tal manera que si el usuario marca múltiples checkboxes, se priorice la opción de mayor puntaje (o la última marcada, dependiendo de la implementación).
+
+Dada la estructura de puntos donde solo una opción debe ser la "más fuerte" o la que "aplica", el uso de st.radio sería funcionalmente más preciso. Sin embargo, si insistes en checkbox para la interfaz, podríamos simular el comportamiento de radio buttons.
+
+Aquí tienes el fragmento solicitado, priorizando la opción de mayor puntaje si se seleccionan múltiples en "Conexión" y "Demanda":
+
+Python
+
+import streamlit as st
+
 st.header("5. Adaptabilidad")
 st.badge("Máximo 500 puntos")
 
 # --- 5.1 Conexión con Manitoba (máximo 200 pts) ---
 st.subheader("5.1 Conexión con Manitoba (máx. 200 pts)")
 
-conexion_mb = st.selectbox("Selecciona tu conexión más fuerte con Manitoba:", [
-    "Familiar cercano en Manitoba (200 pts)",
-    "Experiencia laboral previa en Manitoba (100 pts)",
-    "Estudios postsecundarios en Manitoba (2 años o más) (100 pts)",
-    "Estudios postsecundarios en Manitoba (1 año) (50 pts)",
-    "Amigo cercano o familiar lejano en Manitoba (50 pts)",
-    "Ninguna conexión (0 pts)"
-], index=None, placeholder="Seleccione una opción...")
-
-puntos_conexion_mb = {
-    "Familiar cercano en Manitoba (200 pts)": 200,
-    "Experiencia laboral previa en Manitoba (100 pts)": 100,
-    "Estudios postsecundarios en Manitoba (2 años o más) (100 pts)": 100,
-    "Estudios postsecundarios en Manitoba (1 año) (50 pts)": 50,
-    "Amigo cercano o familiar lejano en Manitoba (50 pts)": 50,
-    "Ninguna conexión (0 pts)": 0
+# Diccionario de opciones y sus puntos
+opciones_conexion_mb = {
+    "Familiar cercano en Manitoba": 200,
+    "Experiencia laboral previa en Manitoba": 100,
+    "Estudios postsecundarios en Manitoba (2 años o más)": 100,
+    "Estudios postsecundarios en Manitoba (1 año)": 50,
+    "Amigo cercano o familiar lejano en Manitoba": 50,
+    "Ninguna conexión": 0 # Aunque se puede inferir si ninguna otra se marca
 }
-if conexion_mb != None:
-    score_conexion_mb = puntos_conexion_mb[conexion_mb]
-else:
-    score_conexion_mb = 0
+
+score_conexion_mb = 0
+# Crear checkboxes y calcular el puntaje de conexión
+# Se toma el puntaje más alto si se marcan múltiples (simulando "conexión más fuerte")
+for label, points in opciones_conexion_mb.items():
+    if label == "Ninguna conexión":
+        continue # Manejaremos "Ninguna conexión" implícitamente o como una opción de deselección
+    
+    if st.checkbox(f"{label} ({points} pts)", key=f"conexion_{label}"):
+        # Si el usuario selecciona múltiples, tomamos el puntaje más alto
+        if points > score_conexion_mb:
+            score_conexion_mb = points
+
+# Si ninguna conexión es marcada explícitamente, y el score_conexion_mb sigue siendo 0,
+# significa que "Ninguna conexión" aplica.
+if score_conexion_mb == 0 and not any(st.session_state.get(f"conexion_{label}", False) for label in opciones_conexion_mb if label != "Ninguna conexión"):
+    st.markdown("_(Ninguna conexión con Manitoba seleccionada)_")
+
 
 st.badge(f"{score_conexion_mb} puntos", color="orange")
 
@@ -246,21 +268,29 @@ st.badge(f"{score_conexion_mb} puntos", color="orange")
 # --- 5.2 Demanda de Manitoba (máximo 500 pts) ---
 st.subheader("5.2 Demanda de Manitoba (máx. 500 pts)")
 
-manitoba_demand = st.selectbox("¿Cuál de estas condiciones aplica a tu perfil?", [
-    "Empleo actual en Manitoba por 6 meses o más + oferta a largo plazo (500 pts)",
-    "Invitación para aplicar bajo una Iniciativa Estratégica (500 pts)",
-    "Ninguna (0 pts)"
-], index=None, placeholder="Seleccione una opción...")
-
-puntos_manitoba_demand = {
-    "Empleo actual en Manitoba por 6 meses o más + oferta a largo plazo (500 pts)": 500,
-    "Invitación para aplicar bajo una Iniciativa Estratégica (500 pts)": 500,
-    "Ninguna (0 pts)": 0
+# Diccionario de opciones y sus puntos
+opciones_manitoba_demand = {
+    "Empleo actual en Manitoba por 6 meses o más + oferta a largo plazo": 500,
+    "Invitación para aplicar bajo una Iniciativa Estratégica": 500,
+    "Ninguna": 0 # Aunque se puede inferir
 }
-if manitoba_demand != None:
-    score_demand = puntos_manitoba_demand[manitoba_demand]
-else:
-    score_demand = 0
+
+score_demand = 0
+# Crear checkboxes y calcular el puntaje de demanda
+# Se toma el puntaje más alto si se marcan múltiples
+for label, points in opciones_manitoba_demand.items():
+    if label == "Ninguna":
+        continue # Manejaremos "Ninguna" implícitamente
+    
+    if st.checkbox(f"{label} ({points} pts)", key=f"demanda_{label}"):
+        if points > score_demand:
+            score_demand = points
+
+# Si ninguna opción de demanda es marcada explícitamente, y el score_demand sigue siendo 0,
+# significa que "Ninguna" aplica.
+if score_demand == 0 and not any(st.session_state.get(f"demanda_{label}", False) for label in opciones_manitoba_demand if label != "Ninguna"):
+    st.markdown("_(Ninguna condición de demanda seleccionada)_")
+
 
 st.badge(f"{score_demand} puntos", color="orange")
 
@@ -268,7 +298,7 @@ st.badge(f"{score_demand} puntos", color="orange")
 # --- 5.3 Desarrollo regional (máximo 50 pts) ---
 st.subheader("5.3 Desarrollo regional (máx. 50 pts)")
 
-fuera_de_wpg = st.checkbox("¿Planeas establecerte fuera de Winnipeg? (50 pts)")
+fuera_de_wpg = st.checkbox("¿Planeas establecerte fuera de Winnipeg? (50 pts)", key="regional_dev")
 score_regional = 50 if fuera_de_wpg else 0
 
 st.badge(f"{score_regional} puntos", color="orange")
@@ -277,10 +307,11 @@ st.badge(f"{score_regional} puntos", color="orange")
 # --- Puntaje total de adaptabilidad ---
 score_adaptabilidad = score_conexion_mb + score_demand + score_regional
 
-if score_adaptabilidad >= 500:
+# Asegurarse de que el puntaje no exceda el máximo de 500
+if score_adaptabilidad > 500: # Cambiado de >= 500 a > 500 para un límite estricto
     score_adaptabilidad = 500
 
-st.badge(f"{score_adaptabilidad} puntos", icon=":material/check:", color="green")
+st.badge(f"Puntaje total de Adaptabilidad: {score_adaptabilidad} puntos", icon=":material/check:", color="green")
 
 st.divider()
 
