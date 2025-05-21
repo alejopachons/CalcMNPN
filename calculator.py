@@ -261,6 +261,9 @@ score_regional = 50 if fuera_de_wpg else 0
 # --- Puntaje total de adaptabilidad ---
 score_adaptabilidad = score_conexion_mb + score_demand + score_regional
 
+if score_adaptabilidad >= 500:
+    score_adaptabilidad = 500
+
 st.divider()
 
 # 6. Evaluación de Riesgo (hasta -200 pts)
@@ -291,5 +294,5 @@ st.divider()
 
 # Puntaje total
 st.subheader("🎯 Tu puntaje total es:")
-puntaje_total = score_educacion + score_experiencia + puntos_totales_idioma + puntos_edad + score_adaptabilidad + puntos_riesgo_total
+puntaje_total = puntos_totales_idioma + pts_edad + score_experiencia + score_educacion + score_adaptabilidad + puntos_riesgo_total
 st.metric(label="Puntaje MPNP estimado", value=puntaje_total)
