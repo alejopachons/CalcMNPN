@@ -2,7 +2,7 @@
 
 import streamlit as st
 
-st.title("Calculadora de puntaje MPNP (Skilled Worker)")
+st.title("Calculadora de puntaje MPNP")
 
 # Enlace oficial
 st.markdown(
@@ -61,22 +61,22 @@ puntos_por_clb = {
 if clb_speaking != None:
     pts_speaking = puntos_por_clb[clb_speaking]
 else:
-    st.warning("Por favor selecciona una opción para continuar.")
+    pts_speaking = 0
 
 if clb_reading != None:
     pts_reading = puntos_por_clb[clb_reading]
 else:
-    st.warning("Por favor selecciona una opción para continuar.")
+    pts_reading = 0
 
 if clb_listening != None:
     pts_listening = puntos_por_clb[clb_listening]
 else:
-    st.warning("Por favor selecciona una opción para continuar.")
+    pts_listening = 0
 
 if clb_listening != None:
     pts_writing = puntos_por_clb[clb_writing]
 else:
-    st.warning("Por favor selecciona una opción para continuar.")
+    pts_writing = 0
 
 # Preguntar por segundo idioma justo después
 segundo_idioma = st.radio("¿Tienes un segundo idioma?", ("No", "Sí"))
