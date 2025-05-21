@@ -255,7 +255,7 @@ score_demand = 0
 # Se toma el puntaje más alto si se marcan múltiples
 for label, points in opciones_manitoba_demand.items():
     if st.checkbox(f"{label} ({points} pts)", key=f"demanda_{label}"):
-        score_conexion_mb += points
+        score_demand += points
 
 st.badge(f"{score_demand} puntos", color="orange")
 
