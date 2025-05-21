@@ -168,7 +168,7 @@ with col32:
 if experiencia != None:
     score_experiencia = puntos_experiencia[experiencia] + score_regional
 else:
-    st.warning("Por favor selecciona una opción para continuar.")
+    score_experiencia = 0
 
 st.divider()
 
