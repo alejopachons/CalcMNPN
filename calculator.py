@@ -317,3 +317,9 @@ st.divider()
 st.subheader("🎯 Tu puntaje total es:")
 puntaje_total = puntos_totales_idioma + pts_edad + score_experiencia + score_educacion + score_adaptabilidad + puntos_riesgo_total
 st.metric(label="-", value=puntaje_total)
+
+st.markdown(
+    "Expression of Interest (EOI) Draws: [Enlace](https://immigratemanitoba.com/notices/eoi-draw/)",
+    unsafe_allow_html=True
+)
+
