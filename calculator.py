@@ -171,7 +171,7 @@ puntos_educacion = {
     "Sin educación postsecundaria formal (0 pts)": 0
 }
 
-if educacion != None
+if educacion != None:
     score_educacion = puntos_educacion[educacion]
 else:
     st.warning("Por favor selecciona una opción para continuar.")
