@@ -6,7 +6,7 @@ st.title("Calculadora de puntaje MPNP")
 
 # Enlace oficial
 st.markdown(
-    "Fuente: [Expression of Interest (EOI)](https://immigratemanitoba.com/immigrate/apply/eoi/)",
+    "Fuente y documentación: [Expression of Interest (EOI)](https://immigratemanitoba.com/immigrate/apply/eoi/)",
     unsafe_allow_html=True
 )
 
@@ -335,4 +335,4 @@ st.divider()
 # Puntaje total
 st.subheader("🎯 Tu puntaje total es:")
 puntaje_total = puntos_totales_idioma + pts_edad + score_experiencia + score_educacion + score_adaptabilidad + puntos_riesgo_total
-st.metric(label="Puntaje MPNP estimado", value=puntaje_total)
+st.metric(value=puntaje_total)
