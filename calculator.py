@@ -12,42 +12,48 @@ st.markdown(
 
 st.header("1. Idioma principal (125 pts máximo)")
 
-# Selección de nivel CLB para cada habilidad del idioma principal
-clb_speaking = st.selectbox("¿Cuál es tu nivel en Speaking?", [
-    "CLB 8 o más (25 pts)",
-    "CLB 7 (22 pts)",
-    "CLB 6 (20 pts)",
-    "CLB 5 (17 pts)",
-    "CLB 4 (12 pts)",
-    "Menos de CLB 4 (0 pts)"
-], index=None, placeholder="Seleccione una opción...")
+col11, col12, col13, col14 = st.columns (4)
 
-clb_reading = st.selectbox("¿Cuál es tu nivel en Reading?", [
-    "CLB 8 o más (25 pts)",
-    "CLB 7 (22 pts)",
-    "CLB 6 (20 pts)",
-    "CLB 5 (17 pts)",
-    "CLB 4 (12 pts)",
-    "Menos de CLB 4 (0 pts)"
-], index=None, placeholder="Seleccione una opción...")
+with col11: 
+    # Selección de nivel CLB para cada habilidad del idioma principal
+    clb_speaking = st.selectbox("¿Cuál es tu nivel en Speaking?", [
+        "CLB 8 o más (25 pts)",
+        "CLB 7 (22 pts)",
+        "CLB 6 (20 pts)",
+        "CLB 5 (17 pts)",
+        "CLB 4 (12 pts)",
+        "Menos de CLB 4 (0 pts)"
+    ], index=None, placeholder="Seleccione una opción...")
 
-clb_listening = st.selectbox("¿Cuál es tu nivel en Listening?", [
-    "CLB 8 o más (25 pts)",
-    "CLB 7 (22 pts)",
-    "CLB 6 (20 pts)",
-    "CLB 5 (17 pts)",
-    "CLB 4 (12 pts)",
-    "Menos de CLB 4 (0 pts)"
-], index=None, placeholder="Seleccione una opción...")
+with col12:
+    clb_reading = st.selectbox("¿Cuál es tu nivel en Reading?", [
+        "CLB 8 o más (25 pts)",
+        "CLB 7 (22 pts)",
+        "CLB 6 (20 pts)",
+        "CLB 5 (17 pts)",
+        "CLB 4 (12 pts)",
+        "Menos de CLB 4 (0 pts)"
+    ], index=None, placeholder="Seleccione una opción...")
 
-clb_writing = st.selectbox("¿Cuál es tu nivel en Writing?", [
-    "CLB 8 o más (25 pts)",
-    "CLB 7 (22 pts)",
-    "CLB 6 (20 pts)",
-    "CLB 5 (17 pts)",
-    "CLB 4 (12 pts)",
-    "Menos de CLB 4 (0 pts)"
-], index=None, placeholder="Seleccione una opción...")
+with col13
+    clb_listening = st.selectbox("¿Cuál es tu nivel en Listening?", [
+        "CLB 8 o más (25 pts)",
+        "CLB 7 (22 pts)",
+        "CLB 6 (20 pts)",
+        "CLB 5 (17 pts)",
+        "CLB 4 (12 pts)",
+        "Menos de CLB 4 (0 pts)"
+    ], index=None, placeholder="Seleccione una opción...")
+
+with col14:
+    clb_writing = st.selectbox("¿Cuál es tu nivel en Writing?", [
+        "CLB 8 o más (25 pts)",
+        "CLB 7 (22 pts)",
+        "CLB 6 (20 pts)",
+        "CLB 5 (17 pts)",
+        "CLB 4 (12 pts)",
+        "Menos de CLB 4 (0 pts)"
+    ], index=None, placeholder="Seleccione una opción...")
 
 puntos_por_clb = {
     "CLB 8 o más (25 pts)": 25,
@@ -143,7 +149,7 @@ puntos_experiencia = {
     "4 años o más (75 pts)": 70,
 }
 
-licenciamiento = st.checkbox("reconocido por el organismo de licenciamiento provincial (100 pts)")
+licenciamiento = st.checkbox("Reconocido por el organismo de licenciamiento provincial (100 pts)")
 score_regional = 100 if licenciamiento else 0
 
 if experiencia != None:
