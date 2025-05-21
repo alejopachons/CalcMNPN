@@ -12,7 +12,8 @@ st.markdown(
 
 st.header("1. Idioma principal (125 pts máximo)")
 
-col11, col12, col13, col14 = st.columns (4)
+col11, col12 = st.columns (2)
+col13, col14 = st.columns (2)
 
 with col11: 
     # Selección de nivel CLB para cada habilidad del idioma principal
