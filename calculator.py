@@ -219,7 +219,6 @@ st.badge("Máximo 500 puntos")
 st.subheader("5.1 Conexión con Manitoba (máx. 200 pts)")
 st.badge("Máximo 200 puntos", color="gray")
 
-
 # Diccionario de opciones y sus puntos
 opciones_conexion_mb = {
     "Familiar cercano en Manitoba": 200,
@@ -231,11 +230,12 @@ opciones_conexion_mb = {
 
 score_conexion_mb = 0
 for label, points in opciones_conexion_mb.items():
-    
     if st.checkbox(f"{label} ({points} pts)", key=f"conexion_{label}"):
-        # Si el usuario selecciona múltiples, tomamos el puntaje más alto
-        if points > score_conexion_mb:
-            score_conexion_mb = points
+        score_conexion_mb += points # Suma los puntos si el checkbox está marcado
+
+# Asegurarse de que el puntaje no exceda el máximo de 200 para esta sección
+if score_conexion_mb > 200:
+    score_conexion_mb = 200
 
 st.badge(f"{score_conexion_mb} puntos", color="orange")
 
@@ -255,8 +255,7 @@ score_demand = 0
 # Se toma el puntaje más alto si se marcan múltiples
 for label, points in opciones_manitoba_demand.items():
     if st.checkbox(f"{label} ({points} pts)", key=f"demanda_{label}"):
-        if points > score_demand:
-            score_demand = points
+        score_conexion_mb += points
 
 st.badge(f"{score_demand} puntos", color="orange")
 
