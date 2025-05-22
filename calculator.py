@@ -321,7 +321,7 @@ general = 861
 postsecondary = 844
 
 with score_col1:
-    st.subheader("🎯 Tu puntaje total es:")
+    st.subheader("Tu puntaje es:")
     puntaje_total = puntos_totales_idioma + pts_edad + score_experiencia + score_educacion + score_adaptabilidad + puntos_riesgo_total
     st.metric(label="-", value=puntaje_total)
     
