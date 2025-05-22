@@ -325,12 +325,10 @@ postsecondary = 844
 score_col1, score_col2 = st.columns(2)
     
 with score_col1:
-    st.caption("Último puntaje general")
     st.caption("General")
     st.metric("2025-03-06 - Draw 240", general)
     
 with score_col2:
-    st.caption("Último puntaje")
     st.caption("Completed post-secondary study in Manitoba")
     st.metric("2025-03-21 - Draw 241", postsecondary)
 
