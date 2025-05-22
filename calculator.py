@@ -322,7 +322,7 @@ st.metric(label="-", value=puntaje_total)
 general = 861
 postsecondary = 844
 
-score_col1, score_col2 = st.columns(3)
+score_col1, score_col2 = st.columns(2)
     
 with score_col1:
     st.caption("Último puntaje general")
