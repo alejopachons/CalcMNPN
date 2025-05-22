@@ -319,6 +319,10 @@ st.subheader(":whale: Tu puntaje total es:")
 puntaje_total = puntos_totales_idioma + pts_edad + score_experiencia + score_educacion + score_adaptabilidad + puntos_riesgo_total
 st.metric(label="-", value=puntaje_total)
 
+st.divider()
+
+st.subheader(":fire: Últimos puntajes:")
+
 general = 861
 postsecondary = 844
 
