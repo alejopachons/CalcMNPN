@@ -314,9 +314,24 @@ st.badge(f"Puntaje total de Evaluación de riesgo: {puntos_riesgo_total} puntos"
 st.divider()
 
 # Puntaje total
-st.subheader("🎯 Tu puntaje total es:")
-puntaje_total = puntos_totales_idioma + pts_edad + score_experiencia + score_educacion + score_adaptabilidad + puntos_riesgo_total
-st.metric(label="-", value=puntaje_total)
+
+score_col1, score_col2, score_col3 = st.columns(3)
+
+general = 861
+postsecondary = 844
+
+with score_col1:
+    st.subheader("🎯 Tu puntaje total es:")
+    puntaje_total = puntos_totales_idioma + pts_edad + score_experiencia + score_educacion + score_adaptabilidad + puntos_riesgo_total
+    st.metric(label="-", value=puntaje_total)
+    
+with score_col2:
+    st.caption("Último puntaje general")
+    st.metric("2025-03-06 - Draw 240", general)
+    
+with score_col3:
+    st.caption("Último puntaje Completed post-secondary study in Manitoba")
+    st.metric("2025-03-21 - Draw 241", postsecondary)
 
 st.markdown(
     "Expression of Interest (EOI) Draws: [Enlace](https://immigratemanitoba.com/notices/eoi-draw/)",
