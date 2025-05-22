@@ -333,6 +333,8 @@ with score_col3:
     st.caption("Último puntaje Completed post-secondary study in Manitoba")
     st.metric("2025-03-21 - Draw 241", postsecondary)
 
+st.divider()
+
 st.markdown(
     "Expression of Interest (EOI) Draws: [Enlace](https://immigratemanitoba.com/notices/eoi-draw/)",
     unsafe_allow_html=True
