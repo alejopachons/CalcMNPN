@@ -315,7 +315,7 @@ st.divider()
 
 # Puntaje total
 
-st.subheader("Tu puntaje es:")
+st.subheader(":whale: Tu puntaje es total es:")
 puntaje_total = puntos_totales_idioma + pts_edad + score_experiencia + score_educacion + score_adaptabilidad + puntos_riesgo_total
 st.metric(label="-", value=puntaje_total)
 
@@ -326,10 +326,12 @@ score_col1, score_col2 = st.columns(2)
     
 with score_col1:
     st.caption("Último puntaje general")
+    st.caption("General")
     st.metric("2025-03-06 - Draw 240", general)
     
 with score_col2:
-    st.caption("Último puntaje Completed post-secondary study in Manitoba")
+    st.caption("Último puntaje")
+    st.caption("Completed post-secondary study in Manitoba")
     st.metric("2025-03-21 - Draw 241", postsecondary)
 
 st.divider()
