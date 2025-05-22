@@ -315,7 +315,7 @@ st.divider()
 
 # Puntaje total
 
-st.subheader(":whale: Tu puntaje es total es:")
+st.subheader(":whale: Tu puntaje total es:")
 puntaje_total = puntos_totales_idioma + pts_edad + score_experiencia + score_educacion + score_adaptabilidad + puntos_riesgo_total
 st.metric(label="-", value=puntaje_total)
 
